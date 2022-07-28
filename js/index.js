@@ -1,6 +1,5 @@
 // 1. 取得訂單列表
 // 2. 渲染初始畫面
-        // 千分位使用
 // 3. 篩選功能製作 
 
 //購物車功能
@@ -8,7 +7,6 @@
     // 計算總金額
     // 千分位使用
 // 2.調整產品數量功能, 金額連動
-        //input type="number"
 // 3. 刪除單品項功能
 // 4. 刪除全品項功能
 
@@ -49,7 +47,7 @@ function addCartItem(productId,num) {
   }).
     then(function (response) {
       console.log(response.data);
-      alert('已加入購物車');
+      addCartSuccessInfo();
       getCartList();
     })
 
@@ -86,7 +84,6 @@ function deleteAllCartList() {
   axios.delete(`${url}/${api_path}/carts`).
     then(function (response) {
       console.log(response.data);
-      alert('已清除購物車');
       getCartList();
     })
 }
@@ -96,7 +93,6 @@ function deleteCartItem(cartId) {
   axios.delete(`${url}/${api_path}/carts/${cartId}`).
     then(function (response) {
       console.log(response.data);
-      alert('已刪除產品');
       getCartList();
     })
 }
@@ -290,7 +286,7 @@ orderInfoBtn.addEventListener("click", e => {
       },
       format: {
         pattern: /(\d{4}-)\d{6}/,  //0910-888999
-        message: "格式不正確rrrrr"
+        message: "格式不正確！"
       }
     },
     "Email": {
@@ -298,7 +294,7 @@ orderInfoBtn.addEventListener("click", e => {
         message: "為必填欄位"
       },
       email: {  //validate.js 規定格式
-        message: "格式不正確rrrrr" 
+        message: "格式不正確！" 
       }
     },
     "寄送地址": {
@@ -344,4 +340,11 @@ orderInfoBtn.addEventListener("click", e => {
 // 1. 千位數
 function toThousands(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+//2. sweetalert2
+function addCartSuccessInfo(){
+  Swal.fire({
+    icon: 'success',
+    title: '已加入購物車',
+  })
 }
