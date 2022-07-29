@@ -191,7 +191,7 @@ productWrap.addEventListener('click',function(e){
     select();
     console.log(newData);
     
-    //加入購物車 api post
+    //取得加入購物車 api post 所需資訊
     newData.forEach(function(item,index){
         if(e.target.getAttribute('data-addCartBtn') == index){
           addCartItem(item.id,1)
@@ -319,17 +319,12 @@ orderInfoBtn.addEventListener("click", e => {
       item.nextElementSibling.textContent = "";
 
       Object.keys(inputValidate).forEach(item => {
-        //選取特定的p段落顯示錯誤訊息
+        //選取特定的data-message標籤屬性，顯示錯誤訊息
         document.querySelector(`[data-message="${item}"]`).textContent = inputValidate[item];
       })
     })
   //驗證有過的話執行  
   }else {
-    //這段會發生錯誤
-    // inputs.forEach(item => { 
-    //   console.log(item);
-    //   item.nextElementSibling.textContent = "";
-    // });
     createOrder(inputs);
     orderInfoForm.reset();  
   }
