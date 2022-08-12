@@ -308,10 +308,10 @@ orderInfoBtn.addEventListener("click", e => {
     }
   }
 
-  //validate(驗證範圍, 約束條件(固定的單字))
+  // validate(驗證範圍, 約束條件(固定的單字))
   let inputValidate = validate(orderInfoForm, constraints);
     console.log(inputValidate);
-    //如果驗證沒過的話執行
+    // 如果驗證沒過的話執行
     if (inputValidate) {
     inputs.forEach(item => {
       /*驗證有error的欄位，item.nextElementSibling會留下訊息
@@ -319,11 +319,11 @@ orderInfoBtn.addEventListener("click", e => {
       item.nextElementSibling.textContent = "";
 
       Object.keys(inputValidate).forEach(item => {
-        //選取特定的data-message標籤屬性，顯示錯誤訊息
+        // 選取特定的data-message標籤屬性，顯示錯誤訊息
         document.querySelector(`[data-message="${item}"]`).textContent = inputValidate[item];
       })
     })
-  //驗證有過的話執行  
+  // 驗證有過的話執行  
   }else {
     createOrder(inputs);
     orderInfoForm.reset();  
@@ -331,7 +331,7 @@ orderInfoBtn.addEventListener("click", e => {
 })
 
 
-//工具
+// 工具
 // 1. 千位數
 function toThousands(price) {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
